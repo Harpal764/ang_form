@@ -8,9 +8,7 @@ import { AuthenticateService } from 'src/app/autho/authenticate.service';
 })
 export class DeshboardComponent implements OnInit {
 
-  constructor(private _autho:AuthenticateService) {
-    _autho.CheckAuthentication();
-   }
+
 
   ngOnInit(): void {
   }

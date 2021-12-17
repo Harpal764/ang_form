@@ -7,17 +7,38 @@
         <mat-form-field>
           <input type="text" matInput placeholder="Username" formControlName="email">
         </mat-form-field>
+        <span class="error" *ngIf="userForm.controls.email.touched &&
+         userForm.controls.email.errors?.required">
+          User Email Invalid !
+        </span>
+        <span class="error" *ngIf="userForm.controls.email.touched &&
+         userForm.controls.email.invalid && !userForm.controls.email.errors?.required">
+         Email is not Valid !
+        </span>
+        <!-- <span class="error" [ngClass]="userForm.controls.password.touched
+         && userForm.controls.password.invalid?
+        'show':'hide'">
+          User Password Invalid !
+        </span> -->
       </p>
 
       <p>
         <mat-form-field>
           <input type="password" matInput placeholder="Password" formControlName="password">
         </mat-form-field>
+        <span class="error" *ngIf="userForm.controls.password.touched &&
+        userForm.controls.password.errors?.required">
+          User Password Invalid !
+        </span>
+        <span class="error" *ngIf="userForm.controls.password.touched &&
+         userForm.controls.password.invalid && !userForm.controls.password.errors?.required">
+         User password must be min 3 charactor!
+        </span>
       </p>
 
 
       <div class="button">
-        <button type="submit" mat-button color="accent">Login</button>
+        <button type="submit" mat-button color="primary" [disabled]="userForm.invalid">Login</button>
       </div>
 
     </form>

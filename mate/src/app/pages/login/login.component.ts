@@ -8,27 +8,27 @@ import { AuthenticateService } from 'src/app/autho/authenticate.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  userForm: FormGroup;
+  userForm: FormGroup|any;
 
   constructor(private _authenticate: AuthenticateService,
     private _router: Router
   ) {
     this.userForm = new FormGroup({
-      "email": new FormControl(""),
-      "password": new FormControl(""),
+      "email": new FormControl("",[Validators.required,Validators.email]),
+      "password": new FormControl("",Validators.compose([Validators.required,Validators.minLength(3)])),
     })
   }
 
   ngOnInit(): void {
   }
   submit() {
-    console.log(this.userForm.value);
-    if (this._authenticate.AuthenticateUser(this.userForm.value)) {
-      this._authenticate.CheckAuthentication();
-      this._router.navigate(["/deshboard"]);
-    } else {
-      alert("invalid login ")
-    }
+    console.log(this.userForm);
+    // if (this._authenticate.AuthenticateUser(this.userForm.value)) {
+    //   this._authenticate.CheckAuthentication();
+    //   this._router.navigate(["/deshboard"]);
+    // } else {
+    //   alert("invalid login ")
+    // }
   }
 
 }
